@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <title>議事録ジェネレーター</title>
+    </head>
+    <body>
+        <h1>議事録ジェネレーター</h1>
+        <h2>★ 次第</h2>
+        <div>
+            ○ 記入日 : <input type="number" class="date" name="year" value="2018">年
+            <input type="number" class="date" name="month" value="1">月
+            <input type="number" class="date" name="day" value="1">日<input type="text" class="date" name="youbi" value="月">曜日
+        </div>
+        <div>
+            ○ 議事 : 学籍番号 <input type="text" name="studentnum"> 氏名 <input type="text" name="studentname">
+        </div>
+        <div>
+            ○ 次回議事 : 氏名 <input type="text" name="nextstudent">
+        </div>
+        <h2>● 出席</h2>
+        <table border="1">
+            <tr>
+                <th class="grade">学年</th>
+                <th>出席者</th>
+            </tr>
+            <tr>
+                <td class="grade">TR</td>
+                <td><input type="text" class="attendance"></td>
+            </tr>
+            <tr>
+                <td class="grade">M2</td>
+                <td><input type="text" class="attendance"></td>
+            </tr>
+            <tr>
+                <td class="grade">M1</td>
+                <td><input type="text" class="attendance"></td>
+            </tr>
+            <tr>
+                <td class="grade">B4</td>
+                <td><input type="text" class="attendance"></td>
+            </tr>
+            <tr>
+                <td class="grade">B3</td>
+                <td><input type="text" class="attendance"></td>
+            </tr>
+            <tr>
+                <td class="grade">B2</td>
+                <td><input type="text" class="attendance"></td>
+            </tr>
+            <tr>
+                <td class="grade">B1</td>
+                <td><input type="text" class="attendance"></td>
+            </tr>
+        </table>
+        <h2>● 進行</h2>
+        <div>
+            ○ <input type="time" value="19:00"> - <input type="time" value="21:00">
+            <input type="text">
+        </div>
+        <div>
+            <button>追加</button>
+        </div>
+        <h2>★ 事務連絡</h2>
+        <h2>★ 活動</h2>
+        <h2>■ 予定</h2>
+        <h2>■ 課外</h2>
+        <h2>■ 備考</h2>
+        
+        
+        
+        <!-- <button>クリア</button>
+        <button>出力</button><br>
+        <h2>★次第</h2>
+        <textarea name="resulut" rows="20" cols="60"></textarea> -->
+    </body>
+</html>
