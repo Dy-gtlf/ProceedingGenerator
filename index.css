@@ -1,20 +1,29 @@
-input.date {
+.date {
     width: 50px;
 }
 
-input.attendance {
-    width: 100%;
+.grade {
+    text-align: center;
+}
+
+.gradeLabel {
+    width: 50px;
+}
+
+.attendance {
+    width: 400px;
     height: 100%;
 }
 
-table{
-    width: 100%;
+.attendanceLabel {
+    width: 400px;
 }
 
-th.grade {
-    width: 50px;
+.time {
+    width: 100px;
 }
 
-td.grade {
-    text-align: center;
+.content {
+    width: 400px;
+    height: 100%;
 }

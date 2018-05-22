@@ -3,23 +3,28 @@ var vm = new Vue({
     data: {
         info : {
             date: {
-                year: '2018',
-                month: '1',
-                day: '1',
-                youbi: '月'
+                year: '',
+                month: '',
+                day: '',
+                youbi: ''
             },
-            stuNum: '114514',
-            stuName: '野獣先輩',
-            nextStuName: '三浦',
+            stuName: '',
+            stuNum: '',
+            nextStuName: '',
         },
         attendance: {
-            TR: 'a',
-            M2: 'b',
-            M1: 'c',
-            B4: 'd',
-            B3: 'e',
-            B2: 'f',
-            B1: 'g'
+            TR: '',
+            M2: '',
+            M1: '',
+            B4: '',
+            B3: '',
+            B2: '',
+            B1: ''
+        }
+    },
+    method: {
+        addProceeding: function () {
+
         }
     }
 });
