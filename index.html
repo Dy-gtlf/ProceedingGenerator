@@ -6,80 +6,79 @@
         <title>議事録ジェネレーター</title>
     </head>
     <body>
-        <div id="vm">
-            <h1>議事録ジェネレーター</h1>
-            <h2>★ 次第</h2>
-            <div>
-                ○ 記入日&nbsp;&nbsp; : <input type="number" class="date" v-model="info.date.year" placeholder="2000">年
-                <input type="number" class="date" v-model="info.date.month" placeholder="00">月
-                <input type="number" class="date" v-model="info.date.day" placeholder="00">日<input type="text" class="date" v-model="info.date.youbi" placeholder="月">曜日
-            </div>
-            <div>
-                ○ 議事&nbsp;&nbsp;&nbsp;&nbsp; : 氏名 <input type="text" v-model="info.stuName" placeholder="田所浩二"> 学籍番号 <input type="text" v-model="info.stuNum" placeholder="s00t000">
-            </div>
-            <div>
-                ○ 次回議事 : 氏名 <input type="text" v-model="info.nextStuName" placeholder="野獣先輩">
-            </div>
-            <h2>● 出席</h2>
-            <table border="1">
-                <tr>
-                    <th class="gradeLabel">学年</th>
-                    <th class="attendanceLabel">出席者</th>
-                </tr>
-                <tr>
-                    <td class="grade">TR</td>
-                    <td><input type="text" class="attendance" v-model="attendance.TR" placeholder="あ、い、う、え、お"></td>
-                </tr>
-                <tr>
-                    <td class="grade">M2</td>
-                    <td><input type="text" class="attendance" v-model="attendance.M2" placeholder="あ、い、う、え、お"></td>
-                </tr>
-                <tr>
-                    <td class="grade">M1</td>
-                    <td><input type="text" class="attendance" v-model="attendance.M1" placeholder="あ、い、う、え、お"></td>
-                </tr>
-                <tr>
-                    <td class="grade">B4</td>
-                    <td><input type="text" class="attendance" v-model="attendance.B4" placeholder="あ、い、う、え、お"></td>
-                </tr>
-                <tr>
-                    <td class="grade">B3</td>
-                    <td><input type="text" class="attendance" v-model="attendance.B3" placeholder="あ、い、う、え、お"></td>
-                </tr>
-                <tr>
-                    <td class="grade">B2</td>
-                    <td><input type="text" class="attendance" v-model="attendance.B2" placeholder="あ、い、う、え、お"></td>
-                </tr>
-                <tr>
-                    <td class="grade">B1</td>
-                    <td><input type="text" class="attendance" v-model="attendance.B1" placeholder="あ、い、う、え、お"></td>
-                </tr>
-            </table>
-            <h2>● 進行</h2>
-            <table border="1">
-                <tr>
-                    <th class="time">時間</th>
-                    <th class="content">内容</th>
-                </tr>
-                <tr>
-                    <td><input type="text" class="time" placeholder="19:00-20:00"></td>
-                    <td>                <input type="text" class="content" placeholder="内容"></td>
-                </tr>
-            </table>
-            <div>
-                <button>追加</button>
-            </div>
-            <h2>★ 事務連絡</h2>
-            <h2>★ 活動</h2>
-            <h2>■ 予定</h2>
-            <h2>■ 課外</h2>
-            <h2>■ 備考</h2>
-            
-            <div>
-                {{ attendance.TR }}
-            </div>
+        <h1>議事録ジェネレーター</h1>
+        <h2>★ 次第</h2>
+        <div id="infoModel">
+            ○ 記入日 : <input type="text" class="date" v-model="date.year" placeholder="2000">年
+            <input type="text" class="date" v-model="date.month" placeholder="00">月
+            <input type="text" class="date" v-model="date.day" placeholder="00">日
+            <input type="text" class="date" v-model="date.youbi" placeholder="月">曜日<br>
+            ○ 議事 : 氏名 <input type="text" v-model="stuName" placeholder="田所浩二"> 学籍番号 
+            <input type="text" v-model="stuNum" placeholder="s00t000"><br>
+            ○ 次回議事 : 氏名 <input type="text" v-model="nextStuName" placeholder="野獣先輩">
         </div>
+
+        <h2>● 出席</h2>
+        <table border="1" id="attendanceModel">
+            <tr>
+                <th class="gradeLabel">学年</th>
+                <th class="attendanceLabel">出席者</th>
+            </tr>
+            <tr>
+                <td class="grade">TR</td>
+                <td><input type="text" class="attendance" v-model="TR" placeholder="あ、い、う、え、お"></td>
+            </tr>
+            <tr>
+                <td class="grade">M2</td>
+                <td><input type="text" class="attendance" v-model="M2" placeholder="あ、い、う、え、お"></td>
+            </tr>
+            <tr>
+                <td class="grade">M1</td>
+                <td><input type="text" class="attendance" v-model="M1" placeholder="あ、い、う、え、お"></td>
+            </tr>
+            <tr>
+                <td class="grade">B4</td>
+                <td><input type="text" class="attendance" v-model="B4" placeholder="あ、い、う、え、お"></td>
+            </tr>
+            <tr>
+                <td class="grade">B3</td>
+                <td><input type="text" class="attendance" v-model="B3" placeholder="あ、い、う、え、お"></td>
+            </tr>
+            <tr>
+                <td class="grade">B2</td>
+                <td><input type="text" class="attendance" v-model="B2" placeholder="あ、い、う、え、お"></td>
+            </tr>
+            <tr>
+                <td class="grade">B1</td>
+                <td><input type="text" class="attendance" v-model="B1" placeholder="あ、い、う、え、お"></td>
+            </tr>
+        </table>
+
+        <h2>● 進行</h2>
+        <div id="proceedingModel">
+            <button v-on:click="addProceeding()">追加</button><button v-on:click="deleteProceeding()">削除</button>
+            <ul id="proceeding">
+            </ul>
+        </div>
+
+        <h2>★ 活動</h2>
+        <div id="activityModel">
+            <button v-on:click="addActivity()">追加</button><button v-on:click="deleteActivity()">削除</button>
+            <ul id="activity">
+            </ul>
+        </div>
+
+        <h2>■ 予定</h2>
+        <div id="scheduleModel">
+            <button v-on:click="addSchedule()">追加</button><button v-on:click="deleteSchedule()">削除</button>
+            <ul id="schedule">
+            </ul>
+        </div>
+        <h2>■ 課外</h2>
+
+        <h2>■ 備考</h2>
+
         <script src="vue.min.js"></script>
-        <script src="script.js"></script>
+        <script src="vm.js"></script>
     </body>
 </html>

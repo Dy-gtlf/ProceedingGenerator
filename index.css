@@ -23,7 +23,15 @@
     width: 100px;
 }
 
-.content {
-    width: 400px;
+.order {
+    width: 200px;
     height: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+.schedule {
+    width: 200px;
 }
