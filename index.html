@@ -9,10 +9,7 @@
         <h1>議事録ジェネレーター</h1>
         <h2>★ 次第</h2>
         <div id="infoModel">
-            ○ 記入日 : <input type="text" class="date" v-model="date.year" placeholder="2000">年
-            <input type="text" class="date" v-model="date.month" placeholder="00">月
-            <input type="text" class="date" v-model="date.day" placeholder="00">日
-            <input type="text" class="date" v-model="date.youbi" placeholder="月">曜日<br>
+            ○ 記入日 : <input type="text" class="date" v-model="date" placeholder="2000.00.00(月)"><br>
             ○ 議事 : 氏名 <input type="text" v-model="stuName" placeholder="田所浩二"> 学籍番号 
             <input type="text" v-model="stuNum" placeholder="s00t000"><br>
             ○ 次回議事 : 氏名 <input type="text" v-model="nextStuName" placeholder="野獣先輩">
@@ -79,7 +76,7 @@
 
         <h2>■ 予定</h2>
         <div id="scheduleModel">
-            <input type="text" class="time" placeholder="2000.00.00(月)" v-model="inputDate">
+            <input type="text" class="date" placeholder="2000.00.00(月)" v-model="inputDate">
             <input type="text" class="process" placeholder="活動内容" v-model="inputActivity">
             <button v-on:click="addSchedule()">追加</button> <button v-on:click="deleteSchedule()">削除</button>
             <ul style="list-style-type: circle;">
@@ -89,9 +86,22 @@
             </ul>
         </div>
         <h2>■ 課外</h2>
-        
+        <div id="extraScheduleModel">
+            <input type="text" class="date" placeholder="2000.00.00(月)" v-model="inputDate">
+            <input type="text" class="time" placeholder="19:00-20:00" v-model="inputTime">
+            <input type="text" class="process" placeholder="活動内容" v-model="inputActivity">
+            <button v-on:click="addExtraSchedule()">追加</button> <button v-on:click="deleteExtraSchedule()">削除</button>
+            <ul style="list-style-type: circle;">
+                <li v-for="extraSchedule in extraSchedules">
+                    {{ extraSchedule.date + ' ' + extraSchedule.time + ' : ' + extraSchedule.activity}}
+                </li>
+            </ul>
+        </div>
         <h2>■ 備考</h2>
-            <textarea name="" id="" cols="70" rows="10"></textarea>
+        <div>
+            <textarea cols="70" rows="10" placeholder="内容"></textarea>
+        </div>
+
         <h2>出力結果</h2>
         <div id="resultModel">
             

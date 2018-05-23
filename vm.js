@@ -1,12 +1,7 @@
 var info = new Vue({
     el: '#infoModel',
     data: {
-        date: {
-            year: '',
-            month: '',
-            day: '',
-            youbi: ''
-        },
+        date: '',
         stuName: '',
         stuNum: '',
         nextStuName: ''
@@ -101,6 +96,34 @@ var schedule = new Vue({
     }
 });
 
+var extraSchedule = new Vue({
+    el: '#extraScheduleModel',
+    data: {
+        inputDate: '',
+        inputTime: '',
+        inputActivity: '',
+        extraSchedules: []
+    },
+    methods: {
+        addExtraSchedule() {
+            this.extraSchedules.push({
+                date: this.inputDate,
+                time: this.inputTime,
+                activity: this.inputActivity
+            });
+            this.inputDate = '';
+            this.inputTime = '';
+            this.inputActivity = '';
+        },
+        deleteExtraSchedule() {
+            var res = confirm("削除しますか？");
+            if( res == true ) {
+                this.extraSchedules.pop();
+            }
+        }
+    }
+});
+
 var result = new Vue({
     el: '#resultModel',
     data: {
@@ -108,9 +131,7 @@ var result = new Vue({
         attendance: attendance,
         process: process,
         activity: activity,
-        schedule: schedule
-    },
-    methods: {
-
+        schedule: schedule,
+        extraSchedule: extraSchedule
     }
 });
