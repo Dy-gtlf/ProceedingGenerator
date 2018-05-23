@@ -26,18 +26,26 @@ var attendance = new Vue({
     }
 });
 
-var proceeding = new Vue({
-    el: '#proceedingModel',
+var process = new Vue({
+    el: '#processModel',
+    data: {
+        inputTime: '',
+        inputActivity: '',
+        processes: []
+    },
     methods: {
-        addProceeding: function () {
-            var element = document.createElement('li');
-            element.innerHTML = '<input type="text" class="time" placeholder="19:00-20:00"> <input type="text" class="order" placeholder="活動内容">';
-            document.getElementById('proceeding').appendChild(element);
+        addProcess() {
+            this.processes.push({
+                time: this.inputTime,
+                activity: this.inputActivity
+            });
+            this.inputTime = '';
+            this.inputActivity = '';
         },
-        deleteProceeding: function () {
-            var element = document.getElementById('proceeding');
-            if (element.childNodes.length > 0) {
-                element.removeChild(element.childNodes.item(element.childNodes.length - 1)); 
+        deleteProcess() {
+            var res = confirm("削除しますか？");
+            if( res == true ) {
+                this.processes.pop();
             }
         }
     }
@@ -45,16 +53,24 @@ var proceeding = new Vue({
 
 var activity = new Vue({
     el: '#activityModel',
+    data: {
+        inputOverview: '',
+        inputDetail: '',
+        activities: []
+    },
     methods: {
-        addActivity: function () {
-            var element = document.createElement('li');
-            element.innerHTML = '<input type="text" placeholder="活動内容"><br><textarea cols="70" rows="10"></textarea>';
-            document.getElementById('activity').appendChild(element);
+        addActivity() {
+            this.activities.push({
+                overview: this.inputOverview,
+                detail: this.inputDetail
+            });
+            this.inputOverview = '';
+            this.inputDetail = '';
         },
-        deleteActivity: function () {
-            var element = document.getElementById('activity');
-            if (element.childNodes.length > 0) {
-                element.removeChild(element.childNodes.item(element.childNodes.length - 1)); 
+        deleteActivity() {
+            var res = confirm("削除しますか？");
+            if( res == true ) {
+                this.activities.pop();
             }
         }
     }
@@ -62,17 +78,39 @@ var activity = new Vue({
 
 var schedule = new Vue({
     el: '#scheduleModel',
+    data: {
+        inputDate: '',
+        inputActivity: '',
+        schedules: []
+    },
     methods: {
-        addSchedule: function () {
-            var element = document.createElement('li');
-            element.innerHTML = '<input type="text" class="schedule" placeholder="2000.00.00(月) 19:00-21:00"> <input type="text" class="order" placeholder="活動内容">';
-            document.getElementById('schedule').appendChild(element);
+        addSchedule() {
+            this.schedules.push({
+                date: this.inputDate,
+                activity: this.inputActivity
+            });
+            this.inputDate = '';
+            this.inputActivity = '';
         },
-        deleteSchedule: function () {
-            var element = document.getElementById('schedule');
-            if (element.childNodes.length > 0) {
-                element.removeChild(element.childNodes.item(element.childNodes.length - 1)); 
+        deleteSchedule() {
+            var res = confirm("削除しますか？");
+            if( res == true ) {
+                this.schedules.pop();
             }
         }
+    }
+});
+
+var result = new Vue({
+    el: '#resultModel',
+    data: {
+        info: info,
+        attendance: attendance,
+        process: process,
+        activity: activity,
+        schedule: schedule
+    },
+    methods: {
+
     }
 });

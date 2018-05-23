@@ -55,30 +55,53 @@
         </table>
 
         <h2>● 進行</h2>
-        <div id="proceedingModel">
-            <button v-on:click="addProceeding()">追加</button><button v-on:click="deleteProceeding()">削除</button>
-            <ul id="proceeding">
+        <div id="processModel">
+            <input type="text" class="time" placeholder="19:00-20:00" v-model="inputTime">
+            <input type="text" class="process" placeholder="活動内容" v-model="inputActivity">
+            <button v-on:click="addProcess()">追加</button> <button v-on:click="deleteProcess()">削除</button><br>
+            <ul style="list-style-type: circle;">
+                <li v-for="process in processes">
+                    {{ process.time + ' : ' + process.activity }}
+                </li>
             </ul>
         </div>
 
         <h2>★ 活動</h2>
         <div id="activityModel">
-            <button v-on:click="addActivity()">追加</button><button v-on:click="deleteActivity()">削除</button>
-            <ul id="activity">
+            <input type="text" placeholder="活動内容" v-model="inputOverview"><br><textarea cols="70" rows="10" v-model="inputDetail"></textarea><br>
+            <button v-on:click="addActivity()">追加</button> <button v-on:click="deleteActivity()">削除</button>
+            <ul>
+                <li v-for="activity in activities">
+                    <h3>{{ activity.overview }}</h3>{{ activity.detail }}
+                </li>
             </ul>
         </div>
 
         <h2>■ 予定</h2>
         <div id="scheduleModel">
-            <button v-on:click="addSchedule()">追加</button><button v-on:click="deleteSchedule()">削除</button>
-            <ul id="schedule">
+            <input type="text" class="time" placeholder="2000.00.00(月)" v-model="inputDate">
+            <input type="text" class="process" placeholder="活動内容" v-model="inputActivity">
+            <button v-on:click="addSchedule()">追加</button> <button v-on:click="deleteSchedule()">削除</button>
+            <ul style="list-style-type: circle;">
+                <li v-for="schedule in schedules">
+                    {{ schedule.date + ' : ' + schedule.activity }}
+                </li>
             </ul>
         </div>
         <h2>■ 課外</h2>
-
+        
         <h2>■ 備考</h2>
-
+            <textarea name="" id="" cols="70" rows="10"></textarea>
+        <h2>出力結果</h2>
+        <div id="resultModel">
+            
+        </div>
         <script src="vue.min.js"></script>
         <script src="vm.js"></script>
+        <script>
+            window.addEventListener('beforeunload', function(e) {
+                e.returnValue = 'チョマテヨ';
+            }, false);
+        </script>
     </body>
 </html>
