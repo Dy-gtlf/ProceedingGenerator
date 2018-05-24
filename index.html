@@ -101,6 +101,7 @@
                 </li>
             </ul>
         </div>
+
         <h2>■ 課外</h2>
         <div id="extraScheduleModel">
             <input type="text" class="date" placeholder="2000.00.00(月)" v-model="inputDate">
@@ -125,6 +126,7 @@
         <script src="vue.min.js"></script>
         <script src="vm.js"></script>
         <script>
+            // ページ移動時の確認
             window.addEventListener('beforeunload', function(e) {
                 e.returnValue = 'チョマテヨ';
             }, false);

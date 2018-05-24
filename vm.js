@@ -169,7 +169,7 @@ var result = new Vue({
         schedule: schedule,
         extraSchedule: extraSchedule,
         note: note,
-        outputText: 'aaaaaa'
+        outputText: ''
     },
     methods: {
         generateProceeding() {
