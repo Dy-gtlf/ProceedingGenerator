@@ -1,9 +1,13 @@
+const date = '2000.00.00(水)';
+const time = '19:00-21:00';
+const overview = '定例活動';
+
 var info = new Vue({
     el: '#infoModel',
     data: {
-        date: '',
+        date: date,
         stuName: '',
-        stuNum: '',
+        stuNum: 's00t000',
         nextStuName: ''
     }
 });
@@ -24,23 +28,48 @@ var attendance = new Vue({
 var process = new Vue({
     el: '#processModel',
     data: {
-        inputTime: '',
-        inputActivity: '',
+        inputTime: time,
+        inputOverview: overview,
         processes: []
     },
     methods: {
         addProcess() {
             this.processes.push({
                 time: this.inputTime,
-                activity: this.inputActivity
+                overview: this.inputOverview
             });
-            this.inputTime = '';
-            this.inputActivity = '';
+            this.inputTime = time;
+            this.inputOverview = overview;
         },
         deleteProcess() {
             var res = confirm("削除しますか？");
             if( res == true ) {
                 this.processes.pop();
+            }
+        }
+    }
+});
+
+var contact = new Vue({
+    el: '#contact',
+    data: {
+        inputOverview: '',
+        inputDetail: '',
+        contacts: [],
+    },
+    methods: {
+        addContact() {
+            this.contacts.push({
+                overview: this.inputOverview,
+                detail: this.inputDetail
+            });
+            this.inputOverview = '';
+            this.inputDetail = '';
+        },
+        deleteContact() {
+            var res = confirm("削除しますか？");
+            if( res == true ) {
+                this.contacts.pop();
             }
         }
     }
@@ -74,18 +103,21 @@ var activity = new Vue({
 var schedule = new Vue({
     el: '#scheduleModel',
     data: {
-        inputDate: '',
-        inputActivity: '',
+        inputDate: date,
+        inputTime: time,
+        inputOverview: overview,
         schedules: []
     },
     methods: {
         addSchedule() {
             this.schedules.push({
                 date: this.inputDate,
-                activity: this.inputActivity
+                time: this.inputTime,
+                overview: this.inputOverview
             });
-            this.inputDate = '';
-            this.inputActivity = '';
+            this.inputDate = date;
+            this.inputTime = time;
+            this.inputOverview = overview;
         },
         deleteSchedule() {
             var res = confirm("削除しますか？");
@@ -99,21 +131,18 @@ var schedule = new Vue({
 var extraSchedule = new Vue({
     el: '#extraScheduleModel',
     data: {
-        inputDate: '',
-        inputTime: '',
-        inputActivity: '',
+        inputDate: date,
+        inputOverview: '',
         extraSchedules: []
     },
     methods: {
         addExtraSchedule() {
             this.extraSchedules.push({
                 date: this.inputDate,
-                time: this.inputTime,
-                activity: this.inputActivity
+                overview: this.inputOverview
             });
-            this.inputDate = '';
-            this.inputTime = '';
-            this.inputActivity = '';
+            this.inputDate = date;
+            this.inputOverview = '';
         },
         deleteExtraSchedule() {
             var res = confirm("削除しますか？");
@@ -124,14 +153,27 @@ var extraSchedule = new Vue({
     }
 });
 
+var note = new Vue({
+    el: '#note',
+    data: { content: '' }
+});
+
 var result = new Vue({
     el: '#resultModel',
     data: {
         info: info,
         attendance: attendance,
         process: process,
+        contact: contact,
         activity: activity,
         schedule: schedule,
-        extraSchedule: extraSchedule
+        extraSchedule: extraSchedule,
+        note: note,
+        outputText: 'aaaaaa'
+    },
+    methods: {
+        generateProceeding() {
+            this.outputText = `${this.info.stuNum}`;
+        }
     }
 });
