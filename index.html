@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>卍議事録ジェネレーター卍</title>
     </head>
     <body>
@@ -23,31 +23,31 @@
             </tr>
             <tr>
                 <td class="grade">TR</td>
-                <td><input type="text" class="attendance" v-model="TR" placeholder="あ、い、う、え、お"></td>
+                <td><input type="text" class="attendance" v-model="attendances[0].members" placeholder="あ、い、う、え、お"></td>
             </tr>
             <tr>
                 <td class="grade">M2</td>
-                <td><input type="text" class="attendance" v-model="M2" placeholder="あ、い、う、え、お"></td>
+                <td><input type="text" class="attendance" v-model="attendances[1].members" placeholder="あ、い、う、え、お"></td>
             </tr>
             <tr>
                 <td class="grade">M1</td>
-                <td><input type="text" class="attendance" v-model="M1" placeholder="あ、い、う、え、お"></td>
+                <td><input type="text" class="attendance" v-model="attendances[2].members" placeholder="あ、い、う、え、お"></td>
             </tr>
             <tr>
                 <td class="grade">B4</td>
-                <td><input type="text" class="attendance" v-model="B4" placeholder="あ、い、う、え、お"></td>
+                <td><input type="text" class="attendance" v-model="attendances[3].members" placeholder="あ、い、う、え、お"></td>
             </tr>
             <tr>
                 <td class="grade">B3</td>
-                <td><input type="text" class="attendance" v-model="B3" placeholder="あ、い、う、え、お"></td>
+                <td><input type="text" class="attendance" v-model="attendances[4].members" placeholder="あ、い、う、え、お"></td>
             </tr>
             <tr>
                 <td class="grade">B2</td>
-                <td><input type="text" class="attendance" v-model="B2" placeholder="あ、い、う、え、お"></td>
+                <td><input type="text" class="attendance" v-model="attendances[5].members" placeholder="あ、い、う、え、お"></td>
             </tr>
             <tr>
                 <td class="grade">B1</td>
-                <td><input type="text" class="attendance" v-model="B1" placeholder="あ、い、う、え、お"></td>
+                <td><input type="text" class="attendance" v-model="attendances[6].members" placeholder="あ、い、う、え、お"></td>
             </tr>
         </table>
 
@@ -65,8 +65,8 @@
 
         <h2>★ 事務連絡</h2>
         <div id="contact">
-            <input type="text" placeholder="連絡内容" v-model="inputOverview"><br>
-            <textarea cols="70" rows="10" v-model="inputDetail" placeholder="内容"></textarea><br>
+            <input type="text" placeholder="概要" v-model="inputOverview"><br>
+            <textarea cols="80" rows="10" v-model="inputDetail" placeholder="詳細"></textarea><br>
             <button v-on:click="addContact()">追加</button> <button v-on:click="deleteContact()">削除</button>
             <ul>
                 <li v-for="contact in contacts">
@@ -78,8 +78,8 @@
 
         <h2>★ 活動</h2>
         <div id="activityModel">
-            <input type="text" placeholder="活動内容" v-model="inputOverview"><br>
-            <textarea cols="70" rows="10" v-model="inputDetail" placeholder="内容"></textarea><br>
+            <input type="text" placeholder="概要" v-model="inputOverview"><br>
+            <textarea cols="80" rows="10" v-model="inputDetail" placeholder="詳細" wrap="hard"></textarea><br>
             <button v-on:click="addActivity()">追加</button> <button v-on:click="deleteActivity()">削除</button>
             <ul>
                 <li v-for="activity in activities">
@@ -113,15 +113,19 @@
                 </li>
             </ul>
         </div>
+
         <h2>■ 備考</h2>
         <div id="note">
-            <textarea cols="70" rows="10" placeholder="内容" v-model="note"></textarea>
+            <textarea cols="80" rows="10" placeholder="内容" v-model="content" wrap="hard"></textarea>
         </div>
 
         <h2>出力結果</h2>
         <div id="resultModel">
             <button v-on:click="generateProceeding()">出力</button><br>
-            <textarea cols="70" rows="40" v-model="outputText"></textarea>
+            タイトル<br>
+            <textarea cols="80" rows="1" v-model="title" wrap="hard"></textarea><br>
+            内容<br>
+            <textarea cols="80" rows="50" v-model="outputText" wrap="hard"></textarea><br>
         </div>
         <script src="vue.min.js"></script>
         <script src="vm.js"></script>
