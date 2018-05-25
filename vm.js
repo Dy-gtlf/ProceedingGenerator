@@ -8,7 +8,11 @@ var info = new Vue({
         date: date,
         stuName: '',
         stuNum: 's00t000',
-        nextStuName: ''
+        nextStuName: '',
+        departments: ['全体', 'CEM', 'ETR', 'GMV'],
+        selectedDepartment: '全体',
+        activityTypes: ['定例活動', '週間報告', '活動報告'],
+        selectedActivityType: '定例活動'
     }
 });
 
@@ -197,9 +201,14 @@ var result = new Vue({
     },
     methods: {
         generateProceeding() {
-            this.title = `${this.info.stuNum} [SLP] 定例活動 ${this.info.date}`
-
-            let str = `□ ${this.info.stuNum} [SLP] 定例活動 ${this.info.date} ${this.info.stuName}\n\n`
+            let title = '';
+            if (this.info.selectedDepartment === '全体') {
+                title = `${this.info.stuNum} [SLP] ${this.info.selectedActivityType} ${this.info.date}`;
+            } else {
+                title = `${this.info.stuNum} [SLP] {${this.info.selectedDepartment}} ${this.info.selectedActivityType} ${this.info.date}`;
+            }
+            this.title = title;
+            let str = `□ ${this.title} ${this.info.stuName.split(' ',2)[0]}${this.info.stuName.split(' ',2)[1]}\n\n`
             + '★ 次第\n\n● 出席\n\n';
             let block = '';
             for (let index in this.attendance.attendances) {
@@ -211,7 +220,7 @@ var result = new Vue({
                 str += block + '\n';
             }
 
-            str += `○ 議事 ${this.info.stuName}\n\n`
+            str += `○ 議事 ${this.info.stuName.split(' ',1)}\n\n`
             + `○ 次回議事 ${this.info.nextStuName}\n\n`;
             
             str += '● 進行\n\n';

@@ -3,25 +3,44 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>卍議事録ジェネレーター卍</title>
+        <title>卍議事録ジェネレータ卍</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     <body>
         <div class="container">
-            <h1>卍議事録ジェネレーター卍</h1>
+            <h1>卍議事録ジェネレータ卍</h1>
             <h2>★ 次第</h2>
             <div id="infoModel">
                 <form class="form-inline">
                     <div class="form-group mb-2">
                         <label for="input1">○ 記入日 : </label>
                         <input type="text" id="input1" v-model="date" class="form-control mx-sm-1 date" placeholder="2000.00.00(水)">
+                        <input type="text" style="display:none">
                     </div>
                 </form>
                 <form class="form-inline">
                     <div class="form-group mb-2">
+                        <label for="input5">○ 部門 : </label>
+                        <select class="form-control mx-sm-1" id="input5" v-model="selectedDepartment">
+                            <option v-for="department in departments">
+                                {{ department }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                            <label for="input6">○ 活動名 : </label>
+                            <select class="form-control mx-sm-1" id="input6" v-model="selectedActivityType">
+                                <option v-for="activityType in activityTypes">
+                                    {{ activityType }}
+                                </option>
+                            </select>
+                        </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group mb-2">
                         <label for="input2">○ 議事 : 氏名</label>
-                        <input type="text" id="input2" v-model="stuName" class="form-control mx-sm-1" placeholder="田所浩二">
+                        <input type="text" id="input2" v-model="stuName" class="form-control mx-sm-1" placeholder="別所␣浩二">
                     </div>
                     <div class="form-group mb-2">
                         <label for="input3"> 学籍番号 </label>
@@ -31,7 +50,8 @@
                 <form class="form-inline mb-2">
                     <div class="form-group">
                         <label for="input4">○ 次回議事 : 氏名 </label>
-                        <input type="text" id="input4" v-model="nextStuName" class="form-control mx-sm-1" placeholder="野獣先輩">
+                        <input type="text" id="input4" v-model="nextStuName" class="form-control mx-sm-1" placeholder="怪獣先輩">
+                        <input type="text" style="display:none">
                     </div>
                 </form>
             </div>
@@ -113,7 +133,7 @@
             <h2>★ 活動</h2>
             <div id="activityModel">
                 <input type="text" class="form-control overview" placeholder="概要" v-model="inputOverview"><br>
-                <textarea class="form-control" cols="80" rows="10" v-model="inputDetail" placeholder="詳細" wrap="hard"></textarea><br>
+                <textarea class="form-control" cols="80" rows="10" v-model="inputDetail" placeholder="詳細"></textarea><br>
                 <button class="btn btn-primary mx-sm-1 mb-2" v-on:click="addActivity()">追加</button> <button class="btn btn-outline-primary mx-sm-1 mb-2" v-on:click="deleteActivity()">削除</button>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="activity in activities">
@@ -172,7 +192,7 @@
             <div id="resultModel">
                 <button class="btn btn-primary" v-on:click="generateProceeding()">出力</button><br>
                 タイトル<br>
-                <textarea class="form-control" cols="80" rows="1" v-model="title" wrap="hard"></textarea><br>
+                <input class="form-control" v-model="title">
                 内容<br>
                 <textarea class="form-control" cols="80" rows="50" v-model="outputText" wrap="hard"></textarea><br>
             </div>
@@ -187,11 +207,11 @@
             }, false);
 
             // エンターキー無効化
-            document.onkeypress = () => {
-                if( window.event.keyCode == 13 ){
-                return false;
+            function cancelSubmit(){
+                if (window.event.keyCode==13) {
+                    return false;
                 }
-            };
+            }
         </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
