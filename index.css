@@ -1,37 +1,28 @@
-.date {
-    width: 110px;
+textarea {
+    resize: none;
+}
+
+.gradeLabel {
+    text-align: center
+}
+
+.attendanceLabel {
+    width: 100%;
+    text-align: center
 }
 
 .grade {
     text-align: center;
 }
 
-.gradeLabel {
-    width: 50px;
+.date {
+    width: 150px;
 }
-
-.attendance {
-    width: 400px;
-    height: 100%;
-}
-
-.attendanceLabel {
-    width: 400px;
-}
-
 .time {
-    width: 90px;
+    width: 100px;
 }
 
-.process {
-    width: 200px;
-    height: 100%;
-}
-
-textarea {
-    resize: none;
-}
-
-.schedule {
+.overview {
     width: 200px;
 }
+

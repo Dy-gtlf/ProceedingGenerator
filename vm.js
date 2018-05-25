@@ -223,7 +223,9 @@ var result = new Vue({
             }
 
             for (let index in this.contact.contacts) {
-                str += '★ 事務連絡\n\n';
+                if (index == 0) {
+                    str += '★ 事務連絡\n\n';
+                }
                 str += `● ${this.contact.contacts[index].overview}\n\n${this.contact.contacts[index].detail}\n\n`;
             }
 
@@ -241,8 +243,10 @@ var result = new Vue({
             }
             
             for (let index in this.extraSchedule.extraSchedules) {
-                str += '■ 課外\n\n';
-                str += `○ ${this.extraSchedule.extraSchedules[index].date} ${this.extraSchedule.extraSchedules[index].time} ${this.extraSchedule.extraSchedules[index].overview}\n`;
+                if (index == 0) {
+                    str += '■ 課外\n\n';
+                }
+                str += `○ ${this.extraSchedule.extraSchedules[index].date} ${this.extraSchedule.extraSchedules[index].overview}\n`;
                 if (index == this.extraSchedule.extraSchedules.length - 1) {
                     str += '\n';
                 }
@@ -252,7 +256,6 @@ var result = new Vue({
                 str += '■ 備考\n\n'
                 + this.note.content;
             }
-            
             
             this.outputText = str;
         }
