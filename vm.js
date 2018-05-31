@@ -1,4 +1,10 @@
-const date = '2000.00.00(水)';
+var today = new Date();
+const weekDay = ["日", "月", "火", "水", "木", "金", "土"]; 
+
+const date = `${('0000' + today.getFullYear()).slice(-4)}.`
+             + `${('00' + (today.getMonth() + 1)).slice(-2)}.`
+             + `${('00' + today.getDate()).slice(-2)}`
+             + `(${weekDay[today.getDay()]})`;
 const time = '19:00-21:00';
 const overview = '定例活動';
 
@@ -61,6 +67,14 @@ var process = new Vue({
     },
     methods: {
         addProcess() {
+            if (this.inputTime === '') {
+                alert('時間が空白でござる');
+                return;
+            }
+            if (this.inputOverview === '') {
+                alert('概要が空白でござる');
+                return;
+            }
             this.processes.push({
                 time: this.inputTime,
                 overview: this.inputOverview
@@ -86,6 +100,14 @@ var contact = new Vue({
     },
     methods: {
         addContact() {
+            if (this.inputOverview === '') {
+                alert('概要が空白でござる');
+                return;
+            }
+            if (this.inputDetail === '') {
+                alert('詳細が空白でござる');
+                return;
+            }
             this.contacts.push({
                 overview: this.inputOverview,
                 detail: this.inputDetail
@@ -111,6 +133,14 @@ var activity = new Vue({
     },
     methods: {
         addActivity() {
+            if (this.inputOverview === '') {
+                alert('概要が空白でござる');
+                return;
+            }
+            if (this.inputDetail === '') {
+                alert('詳細が空白でござる');
+                return;
+            }
             this.activities.push({
                 overview: this.inputOverview,
                 detail: this.inputDetail
@@ -137,6 +167,18 @@ var schedule = new Vue({
     },
     methods: {
         addSchedule() {
+            if (this.inputDate === '') {
+                alert('日付が空白でござる');
+                return;
+            }
+            if (this.inputTime === '') {
+                alert('時間が空白でござる');
+                return;
+            }
+            if (this.inputOverview === '') {
+                alert('概要が空白でござる');
+                return;
+            }
             this.schedules.push({
                 date: this.inputDate,
                 time: this.inputTime,
@@ -164,6 +206,14 @@ var extraSchedule = new Vue({
     },
     methods: {
         addExtraSchedule() {
+            if (this.inputDate === '') {
+                alert('日付が空白でござる');
+                return;
+            }
+            if (this.inputOverview === '') {
+                alert('概要が空白でござる');
+                return;
+            }
             this.extraSchedules.push({
                 date: this.inputDate,
                 overview: this.inputOverview
@@ -201,8 +251,24 @@ var result = new Vue({
     },
     methods: {
         generateProceeding() {
+            if (this.info.date === '') {
+                alert('日付が空白でござる');
+                return;
+            }
+            if (this.info.stuName === '') {
+                alert('議事の氏名が空白でござる');
+                return;
+            }
+            if (this.info.stuNum === '') {
+                alert('議事の学籍番号が空白でござる');
+                return;
+            }
+            if (this.info.nextStuName === '') {
+                alert('次回議事の氏名が空白でござる');
+                return;
+            }
             let title = '';
-            if (this.info.selectedDepartment === '全体') {
+            if (this.info.selectedDepartment == '全体') {
                 title = `${this.info.stuNum} [SLP] ${this.info.selectedActivityType} ${this.info.date}`;
             } else {
                 title = `${this.info.stuNum} [SLP] {${this.info.selectedDepartment}} ${this.info.selectedActivityType} ${this.info.date}`;
@@ -223,8 +289,10 @@ var result = new Vue({
             str += `○ 議事 ${this.info.stuName.split(' ',1)}\n\n`
             + `○ 次回議事 ${this.info.nextStuName}\n\n`;
             
-            str += '● 進行\n\n';
             for (let index in this.process.processes) {
+                if (index == 0) {
+                    str += '● 進行\n\n';
+                }
                 str += `○ ${this.process.processes[index].time} ${this.process.processes[index].overview}\n`;
                 if (index == this.process.processes.length - 1) {
                     str += '\n';
@@ -238,13 +306,18 @@ var result = new Vue({
                 str += `● ${this.contact.contacts[index].overview}\n\n${this.contact.contacts[index].detail}\n\n`;
             }
 
-            str += '★ 活動\n\n';
             for (let index in this.activity.activities) {
+                if (index == 0) {
+                    str += '★ 活動\n\n';
+                }
                 str += `● ${this.activity.activities[index].overview}\n\n${this.activity.activities[index].detail}\n\n`;
             }
 
-            str += '■ 予定\n\n';
+           
             for (let index in this.schedule.schedules) {
+                if (index == 0) {
+                     str += '■ 予定\n\n';
+                }
                 str += `○ ${this.schedule.schedules[index].date} ${this.schedule.schedules[index].time} ${this.schedule.schedules[index].overview}\n`;
                 if (index == this.schedule.schedules.length - 1) {
                     str += '\n';

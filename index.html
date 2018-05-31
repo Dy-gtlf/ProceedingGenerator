@@ -103,7 +103,7 @@
                 <form class="form-inline">
                     <div class="form-group mb-2">
                         <input type="text" class="form-control mx-sm-1 time" placeholder="19:00-21:00" v-model="inputTime">
-                        <input type="text" class="form-control mx-sm-1 overview" placeholder="活動内容" v-model="inputOverview">
+                        <input type="text" class="form-control mx-sm-1 overview" placeholder="概要" v-model="inputOverview">
                         <button type="button" class="btn btn-primary mx-sm-1" v-on:click="addProcess()">追加</button> <button type="button" class="btn btn-outline-primary mx-sm-1" v-on:click="deleteProcess()">削除</button>
                     </div>
                 </form>
@@ -150,7 +150,7 @@
                     <div class="form-group mb-2">
                         <input type="text" class="form-control date mx-sm-1" placeholder="2000.00.00(水)" v-model="inputDate">
                         <input type="text" class="form-control time mx-sm-1" placeholder="19:00-21:00" v-model="inputTime">            
-                        <input type="text" class="form-control overview mx-sm-1" placeholder="活動内容" v-model="inputOverview">
+                        <input type="text" class="form-control overview mx-sm-1" placeholder="概要" v-model="inputOverview">
                         <button type="button" class="btn btn-primary mx-sm-1" v-on:click="addSchedule()">追加</button> <button type="button" class="btn btn-outline-primary mx-sm-1" v-on:click="deleteSchedule()">削除</button>
                     </div>
                 </form>
@@ -168,7 +168,7 @@
                 <form class="form-inline">
                     <div class="form-group mb-2">
                         <input type="text" class="form-control date mx-sm-1" placeholder="2000.00.00(月)" v-model="inputDate">
-                        <input type="text" class="form-control overview mx-sm-1" placeholder="活動内容" v-model="inputOverview">
+                        <input type="text" class="form-control overview mx-sm-1" placeholder="概要" v-model="inputOverview">
                         <button type="button" class="btn btn-primary mx-sm-1" v-on:click="addExtraSchedule()">追加</button> <button type="button" class="btn btn-outline-primary mx-sm-1" v-on:click="deleteExtraSchedule()">削除</button>
                     </div>
                 </form>
